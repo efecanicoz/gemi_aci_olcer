@@ -1,3 +1,10 @@
+#UART
+UART 2 is used(pin11,13), this could be configured from "/boot/armbianEnv.txt" via adding
+`overlays= uart(1|2|3)`
+
+Careful that uart0 is used as debug terminal by linux. 
+
+#SPI
 Add below to "/boot/armbianEnv.txt"
 	overlay_prefix=sun8i-h3
 	overlays=spi-spidev
