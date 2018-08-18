@@ -48,7 +48,7 @@ int set_interface_attribs (int fd, int speed, int parity)
                                         // no canonical processing
         tty.c_oflag = 0;                // no remapping, no delays
         tty.c_cc[VMIN]  = 1;            // minimum message length to wait in blocking read function
-        tty.c_cc[VTIME] = 1;            // time between each byte to fire select() event 0.5 seconds read timeout
+        tty.c_cc[VTIME] = 0;            // time between each byte to fire select() event 0.5 seconds read timeout
 
         tty.c_iflag &= ~(IXON | IXOFF | IXANY); // shut off xon/xoff ctrl
 
@@ -77,7 +77,7 @@ struct termios options;
 tcgetattr(fd, &options);
 
 options.c_cc[VMIN]=11;
-options.c_cc[VTIME]=1;
+options.c_cc[VTIME]=0;
 
 /*
  * Set the new options for the port...
@@ -132,12 +132,14 @@ void read_frame(int fd, struct _data * sensor_data)
     char sum;
     
     n = read(fd, buffer, 11);
+
     if(n != 11)
     {
         printf("Expected 11 bytes of frame but didnt get\n");
         return;
     }
     
+
     /* check checksum */
     for(i = 0, sum = 0; i < 10; i++)
     {
