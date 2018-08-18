@@ -1,3 +1,8 @@
+#I2C
+I2C1 is used(pin 27, 28), this is configured in "/boot/armbianEnv.txt" via adding
+`overlays = i2c1`
+
+
 #UART
 UART 2 is used(pin11,13), this could be configured from "/boot/armbianEnv.txt" via adding
 `overlays= uart(1|2|3)`
