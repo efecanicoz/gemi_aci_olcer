@@ -72,6 +72,10 @@ int main(void)
         read_byte(fd, 0x40, &vall);
         z = (short)(valh << 8 | vall);
         printf("x=%d\ty=%d\tz=%d\n", x, y, z);
+
+        /* sleep for 50msec */
+        usleep(50000);
+        
     }
 
     /* do not forget to close the handle */
